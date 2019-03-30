@@ -1,0 +1,56 @@
+[
+    {
+        "id": "ff7d7036.5206",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d93be7de.37c7c",
+        "type": "phonenumber",
+        "z": "ff7d7036.5206",
+        "name": "Toto",
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "29b6bc91.33599c"
+            ]
+        ]
+    },
+    {
+        "id": "6eb1095d.89e388",
+        "type": "inject",
+        "z": "ff7d7036.5206",
+        "name": "",
+        "topic": "",
+        "payload": "TeSt",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 80,
+        "wires": [
+            [
+                "d93be7de.37c7c"
+            ]
+        ]
+    },
+    {
+        "id": "29b6bc91.33599c",
+        "type": "debug",
+        "z": "ff7d7036.5206",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 80,
+        "wires": []
+    }
+]
