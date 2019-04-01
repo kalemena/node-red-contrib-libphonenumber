@@ -4,11 +4,14 @@ const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance()
 module.exports = function(RED) {
     function PhoneNumberNode(config) {
         RED.nodes.createNode(this,config);
+
+        this.defaultCountry = config.defaultCountry || ''
+
         var node = this;
         this.on('input', function(msg) {
             
             // Parse number with country code and keep raw input.
-            const number = phoneUtil.parseAndKeepRawInput(msg.payload, 'US');
+            const number = phoneUtil.parseAndKeepRawInput(msg.payload, node.defaultCountry);
             
             msg.phone = {};
             msg.phone.CountryCode = number.getCountryCode();
