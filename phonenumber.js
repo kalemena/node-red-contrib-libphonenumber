@@ -1,18 +1,22 @@
 const PNF = require('google-libphonenumber').PhoneNumberFormat;
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+const shortInfo = require('google-libphonenumber').ShortNumberInfo.getInstance();
  
 module.exports = function(RED) {
     function PhoneNumberNode(config) {
         RED.nodes.createNode(this,config);
 
-        this.defaultCountry = config.defaultCountry || ''
+        this.defaultCountryLetters = config.defaultCountryLetters || ''
+        //this.language = config.language || ''
+        //this.regionDialingFrom = config.regionDialingFrom || ''
+        //this.regionCode = config.regionCode || ''
+        //this.outOfCountryFormatFromLetters = config.outOfCountryFormatFromLetters || ''
 
         var node = this;
         this.on('input', function(msg) {
             
-            // Parse number with country code and keep raw input.
-            const number = phoneUtil.parseAndKeepRawInput(msg.payload, node.defaultCountry);
-            
+            const number = phoneUtil.parseAndKeepRawInput(msg.payload, node.defaultCountryLetters);
+                       
             msg.phone = {};
             msg.phone.CountryCode = number.getCountryCode();
             msg.phone.NationalNumber = number.getNationalNumber();
@@ -22,15 +26,21 @@ module.exports = function(RED) {
             msg.phone.RawInput = number.getRawInput();
             msg.phone.isPossibleNumber = phoneUtil.isPossibleNumber(number);
             msg.phone.isValidNumber = phoneUtil.isValidNumber(number);
-            msg.phone.isValidNumberForRegion = phoneUtil.isValidNumberForRegion(number, 'US');
+            //msg.phone.isValidShortNumber = phoneUtil.isValidShortNumber(number);
+            //msg.phone.isValidShortNumberForRegion = phoneUtil.isValidShortNumberForRegion(number, node.regionDialingFrom);
+            //msg.phone.isValidNumberForRegion = phoneUtil.isValidNumberForRegion(number, node.regionDialingFrom);
             msg.phone.RegionCodeForNumber = phoneUtil.getRegionCodeForNumber(number);
             msg.phone.NumberType = phoneUtil.getNumberType(number);
             msg.phone.E164 = phoneUtil.format(number, PNF.E164);
-            msg.phone.OriginalFormat = phoneUtil.formatInOriginalFormat(number, 'US');
-            msg.phone.NationalFormat = phoneUtil.format(number, PNF.NATIONAL);
-            msg.phone.InternationalFormat = phoneUtil.format(number, PNF.INTERNATIONAL);
-            msg.phone.OutOfCountryCallingNumberUS = phoneUtil.formatOutOfCountryCallingNumber(number, 'US');
-            msg.phone.OutOfCountryCallingNumberCH = phoneUtil.formatOutOfCountryCallingNumber(number, 'CH');
+            msg.phone.INTERNATIONAL = phoneUtil.format(number, PNF.INTERNATIONAL);
+            msg.phone.NATIONAL = phoneUtil.format(number, PNF.NATIONAL);
+            msg.phone.RFC3966 = phoneUtil.format(number, PNF.RFC3966);
+            msg.phone.OriginalFormat = phoneUtil.formatInOriginalFormat(number, node.defaultCountryLetters);
+
+            //msg.phone.OutOfCountryCallingNumber = phoneUtil.formatOutOfCountryCallingNumber(number, node.outOfCountryLetters);
+            //msg.phone.connectsToEmergencyNumber = shortInfo.connectsToEmergencyNumber(msg.payload, node.defaultCountryLetters);
+            //msg.phone.isPossibleShortNumber = shortInfo.isPossibleShortNumber(phoneUtil.parse(msg.payload, node.defaultCountryLetters));
+            //msg.phone.isPossibleShortNumberForRegion = shortInfo.isPossibleShortNumberForRegion(number, node.defaultCountryLetters);
 
             node.send(msg);
         });

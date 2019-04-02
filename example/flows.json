@@ -10,8 +10,8 @@
         "id": "d93be7de.37c7c",
         "type": "phonenumber",
         "z": "ff7d7036.5206",
-        "name": "Toto",
-        "x": 370,
+        "name": "Parse Phone Number",
+        "x": 460,
         "y": 80,
         "wires": [
             [
@@ -25,13 +25,13 @@
         "z": "ff7d7036.5206",
         "name": "",
         "topic": "",
-        "payload": "+44 1276 123456",
+        "payload": "+33604123456",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
+        "x": 180,
         "y": 80,
         "wires": [
             [
@@ -50,7 +50,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 590,
+        "x": 690,
         "y": 80,
         "wires": []
     }
