@@ -11,6 +11,7 @@
         "type": "phonenumber",
         "z": "ff7d7036.5206",
         "name": "Parse Phone Number",
+        "defaultCountryLetters": "FR",
         "x": 460,
         "y": 80,
         "wires": [
@@ -25,13 +26,13 @@
         "z": "ff7d7036.5206",
         "name": "",
         "topic": "",
-        "payload": "+33604123456",
+        "payload": "0504123456",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 180,
+        "x": 170,
         "y": 80,
         "wires": [
             [

@@ -1,13 +1,14 @@
 <script type="text/javascript">
     RED.nodes.registerType('phonenumber',{
         category: 'function',
-        color: '#a6bbcf',
+        color: '#C7E9C0',
         defaults: {
-            name: {value:""}
+            name: { value:"" },
+            defaultCountryLetters: { value:"US" }
         },
         inputs:1,
         outputs:1,
-        icon: "file.png",
+        icon: "hash.png",
         label: function() {
             return this.name||"phonenumber";
         }
@@ -22,8 +23,8 @@
 
     <!-- INPUT DEFAULT COUNTRY -->
     <div class="form-row">
-        <label for="node-input-default-country">Input Default Country</label>
-        <input type="text" id="node-input-defaultCountry" placeholder="[determined by system]" style="width:70%;">
+        <label for="node-input-defaultCountryLetters">Input Default Country</label>
+        <input type="text" id="node-input-defaultCountryLetters" placeholder="[determined by system]" style="width:70%;">
     </div>
 </script>
 

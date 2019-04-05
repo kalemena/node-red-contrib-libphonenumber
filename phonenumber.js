@@ -90,9 +90,7 @@ module.exports = function(RED) {
                     msg.phone.NumberType = 'UNKNOWN';
                     break;
             }
-        
-
-
+            
             msg.phone.E164 = phoneUtil.format(number, PNF.E164);
             msg.phone.INTERNATIONAL = phoneUtil.format(number, PNF.INTERNATIONAL);
             msg.phone.NATIONAL = phoneUtil.format(number, PNF.NATIONAL);
