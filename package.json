@@ -10,12 +10,13 @@
     "google-libphonenumber": "^3.2.2"
   },
   "keywords": [
-    "node-red"
+    "node-red",
+    "libphonenumber"
   ],
   "author": "Kalemena",
   "node-red": {
     "nodes": {
-      "phonenumber": "phonenumber.js"
+      "phonenumber": "libphonenumber/phonenumber.js"
     }
   },
   "license": "MIT"
