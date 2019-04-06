@@ -1,5 +1,5 @@
 const PNF = require('google-libphonenumber').PhoneNumberFormat;
-const CCS = require('google-libphonenumber').PhoneNumber.CountryCodeSource;
+const CountryCodeSource = require('google-libphonenumber').PhoneNumber.CountryCodeSource;
 const PhoneNumberType = require('google-libphonenumber').PhoneNumberType;
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 const shortInfo = require('google-libphonenumber').ShortNumberInfo.getInstance();
@@ -9,46 +9,51 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
 
         this.defaultCountryLetters = config.defaultCountryLetters || ''
-        //this.language = config.language || ''
-        //this.regionDialingFrom = config.regionDialingFrom || ''
+        this.regionDialingFrom = config.regionDialingFrom || ''
+        //this.language = config.language || ''        
         //this.regionCode = config.regionCode || ''
         //this.outOfCountryFormatFromLetters = config.outOfCountryFormatFromLetters || ''
 
         var node = this;
         this.on('input', function(msg) {
             
+            node.defaultCountryLetters = msg.defaultCountryLetters || node.defaultCountryLetters;
+            node.regionDialingFrom = msg.regionDialingFrom || node.regionDialingFrom;
+
             const number = phoneUtil.parseAndKeepRawInput(msg.payload, node.defaultCountryLetters);
                        
             msg.phone = {};
             msg.phone.CountryCode = number.getCountryCode();
             msg.phone.NationalNumber = number.getNationalNumber();
-            msg.phone.Extension = number.getExtension() != null ? number.getExtension() : '';
+            msg.phone.Extension = number.getExtension() || '';
             countryCodeSource = number.getCountryCodeSource();
             switch(countryCodeSource) {
-                case CCS.FROM_NUMBER_WITH_PLUS_SIGN:
+                case CountryCodeSource.FROM_NUMBER_WITH_PLUS_SIGN:
                     msg.phone.CountryCodeSource = 'FROM_NUMBER_WITH_PLUS_SIGN';
                     break;
-                case CCS.FROM_NUMBER_WITH_IDD:
+                case CountryCodeSource.FROM_NUMBER_WITH_IDD:
                     msg.phone.CountryCodeSource = 'FROM_NUMBER_WITH_IDD';
                     break;
-                case CCS.FROM_NUMBER_WITHOUT_PLUS_SIGN:
+                case CountryCodeSource.FROM_NUMBER_WITHOUT_PLUS_SIGN:
                     msg.phone.CountryCodeSource = 'FROM_NUMBER_WITHOUT_PLUS_SIGN';
                     break;
-                case CCS.FROM_DEFAULT_COUNTRY:
+                case CountryCodeSource.FROM_DEFAULT_COUNTRY:
                     msg.phone.CountryCodeSource = 'FROM_DEFAULT_COUNTRY';
                     break;
-                case CCS.UNSPECIFIED:
+                case CountryCodeSource.UNSPECIFIED:
                 default:
                     msg.phone.CountryCodeSource = 'UNSPECIFIED';
             }
 
-            msg.phone.ItalianLeadingZero = (number.getItalianLeadingZero() != null ? number.getItalianLeadingZero() : false);
+            msg.phone.ItalianLeadingZero = number.getItalianLeadingZero() || false;
             msg.phone.RawInput = number.getRawInput();
             msg.phone.isPossibleNumber = phoneUtil.isPossibleNumber(number);
             msg.phone.isValidNumber = phoneUtil.isValidNumber(number);
             //msg.phone.isValidShortNumber = phoneUtil.isValidShortNumber(number);
-            //msg.phone.isValidShortNumberForRegion = phoneUtil.isValidShortNumberForRegion(number, node.regionDialingFrom);
-            //msg.phone.isValidNumberForRegion = phoneUtil.isValidNumberForRegion(number, node.regionDialingFrom);
+            if(node.regionDialingFrom) {
+                // msg.phone['isValidShortNumberForRegion' + node.regionDialingFrom] = phoneUtil.isValidShortNumberForRegion(number, node.regionDialingFrom);
+                msg.phone['isValidNumberForRegion' + node.regionDialingFrom] = phoneUtil.isValidNumberForRegion(number, node.regionDialingFrom);
+            }            
             msg.phone.RegionCodeForNumber = phoneUtil.getRegionCodeForNumber(number);
             numberType = phoneUtil.getNumberType(number);
             switch(numberType) {
@@ -90,7 +95,7 @@ module.exports = function(RED) {
                     msg.phone.NumberType = 'UNKNOWN';
                     break;
             }
-            
+
             msg.phone.E164 = phoneUtil.format(number, PNF.E164);
             msg.phone.INTERNATIONAL = phoneUtil.format(number, PNF.INTERNATIONAL);
             msg.phone.NATIONAL = phoneUtil.format(number, PNF.NATIONAL);

@@ -12,6 +12,7 @@
         "z": "ff7d7036.5206",
         "name": "Parse Phone Number",
         "defaultCountryLetters": "FR",
+        "regionDialingFrom": "GB",
         "x": 460,
         "y": 80,
         "wires": [
@@ -26,13 +27,13 @@
         "z": "ff7d7036.5206",
         "name": "",
         "topic": "",
-        "payload": "0504123456",
+        "payload": "+33504123456",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 170,
+        "x": 180,
         "y": 80,
         "wires": [
             [
