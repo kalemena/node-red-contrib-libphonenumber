@@ -1,5 +1,6 @@
 # node-red-contrib-libphonenumber
 
+{::nomarkdown}
 <p>A Node Red wrapper around Google Lib Phone Number</p>
 <p>Parses, validates and converts a phone number.</p>
 <p>This node wraps default capabilities.</p>
@@ -32,6 +33,8 @@
         <dd> Parsed number info with various details.</dd>            
     </dl>
 <p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
+
+{:/}
 
 # Example
 
