@@ -13,8 +13,8 @@
         "name": "Parse Phone Number",
         "defaultCountryLetters": "FR",
         "regionDialingFrom": "GB",
-        "x": 460,
-        "y": 80,
+        "x": 660,
+        "y": 120,
         "wires": [
             [
                 "29b6bc91.33599c"
@@ -27,14 +27,14 @@
         "z": "ff7d7036.5206",
         "name": "",
         "topic": "",
-        "payload": "+33504123456",
+        "payload": "0123456789",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 180,
-        "y": 80,
+        "x": 370,
+        "y": 120,
         "wires": [
             [
                 "d93be7de.37c7c"
@@ -52,8 +52,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 690,
-        "y": 80,
+        "x": 890,
+        "y": 120,
         "wires": []
     }
 ]

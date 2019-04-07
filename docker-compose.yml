@@ -8,7 +8,7 @@ services:
     ports:
      - "2880:1880"
     volumes:
-     - ./example:/data
+     - ./libphonenumber/example:/data
      - ./settings.js:/home/node-red/settings.js
     environment:
      - FLOWS=/data/flows.json
