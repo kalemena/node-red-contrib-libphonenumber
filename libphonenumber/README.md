@@ -1,37 +1,37 @@
 # node-red-contrib-libphonenumber
 
-    <p>A Node Red wrapper around Google Lib Phone Number</p>
-    <p>Parses, validates and converts a phone number.</p>
-    <p>This node wraps default capabilities.</p>
-    <p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
+<p>A Node Red wrapper around Google Lib Phone Number</p>
+<p>Parses, validates and converts a phone number.</p>
+<p>This node wraps default capabilities.</p>
+<p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
 
-    <h3>Inputs</h3>
-        <dl class="message-properties">
-            <dt>payload
-                <span class="property-type">string | buffer</span>
-            </dt>
-            <dd> the raw phone number. </dd>            
-        </dl>
-        <dl class="message-properties">
-            <dt>msg.defaultCountryLetters
-                <span class="property-type">string | buffer</span>
-            </dt>
-            <dd> the default country number formating. </dd>            
-        </dl>
-        <dl class="message-properties">
-            <dt>msg.regionDialingFrom
-                <span class="property-type">string | buffer</span>
-            </dt>
-            <dd> Optional. If provided, msg.phone.isValidNumberForRegion&lt;region&gt; is returned.</dd>            
-        </dl>
-    <h3>Outputs</h3>
-        <dl class="message-properties">
-            <dt>msg.phone
-                <span class="property-type">string | buffer</span>
-            </dt>
-            <dd> Parsed number info with various details.</dd>            
-        </dl>
-    <p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
+<h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">string | buffer</span>
+        </dt>
+        <dd> the raw phone number. </dd>            
+    </dl>
+    <dl class="message-properties">
+        <dt>msg.defaultCountryLetters
+            <span class="property-type">string | buffer</span>
+        </dt>
+        <dd> the default country number formating. </dd>            
+    </dl>
+    <dl class="message-properties">
+        <dt>msg.regionDialingFrom
+            <span class="property-type">string | buffer</span>
+        </dt>
+        <dd> Optional. If provided, msg.phone.isValidNumberForRegion&lt;region&gt; is returned.</dd>            
+    </dl>
+<h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>msg.phone
+            <span class="property-type">string | buffer</span>
+        </dt>
+        <dd> Parsed number info with various details.</dd>            
+    </dl>
+<p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
 
 # Example
 
