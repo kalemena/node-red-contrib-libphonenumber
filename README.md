@@ -1,6 +1,5 @@
 # node-red-contrib-libphonenumber
 
-{::nomarkdown}
 <p>A Node Red wrapper around Google Lib Phone Number</p>
 <p>Parses, validates and converts a phone number.</p>
 <p>This node wraps default capabilities.</p>
@@ -34,13 +33,19 @@
     </dl>
 <p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
 
-{:/}
+# Installation
+
+From node-red home directory, run below command:
+
+```bash
+$ npm -i node-red-contrib-libphonenumber
+```
 
 # Example
 
 ## Screenshot
 
-![Basic parse flow](/libphonenumber/example/example.png)
+![Basic parse flow](/example/example.png)
 
 ## Sample output
 
