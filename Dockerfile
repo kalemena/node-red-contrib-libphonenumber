@@ -1,5 +1,5 @@
 FROM kalemena/node-red:latest
 
-ADD . /opt/node-red-contrib-libphonenumber
+ADD [ "package.json", "phonenumber.*", "LICENSE", "example", "/opt/node-red-contrib-libphonenumber/" ]
 
 RUN npm i /opt/node-red-contrib-libphonenumber;
