@@ -41,6 +41,16 @@ From node-red home directory, run below command:
 $ npm -i node-red-contrib-libphonenumber
 ```
 
+# Test
+
+Using docker:
+
+```bash
+$ docker-compose up -d
+```
+
+Then browse to *http://localhost:2880* to see the example described in section below.
+
 # Example
 
 ## Screenshot
