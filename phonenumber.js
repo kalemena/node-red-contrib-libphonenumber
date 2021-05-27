@@ -4,6 +4,10 @@ const PhoneNumberType = require('google-libphonenumber').PhoneNumberType;
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 const shortInfo = require('google-libphonenumber').ShortNumberInfo.getInstance();
 
+//const geocoder = require('google-libphonenumber').PhoneNumberOfflineGeocoder.getInstance();
+//const carrierMapper = require('google-libphonenumber').PhoneNumberToCarrierMapper.getInstance();
+//const phoneNumberToTimeZonesMapper = require('google-libphonenumber').PhoneNumberToTimeZonesMapper.getInstance();
+
 module.exports = function(RED) {
     function PhoneNumberNode(config) {
         RED.nodes.createNode(this,config);
@@ -56,6 +60,16 @@ module.exports = function(RED) {
             }            
             msg.phone.RegionCodeForNumber = phoneUtil.getRegionCodeForNumber(number);
             numberType = phoneUtil.getNumberType(number);
+
+            msg.phone.E164 = phoneUtil.format(number, PNF.E164);
+            msg.phone.INTERNATIONAL = phoneUtil.format(number, PNF.INTERNATIONAL);
+            msg.phone.NATIONAL = phoneUtil.format(number, PNF.NATIONAL);
+            msg.phone.RFC3966 = phoneUtil.format(number, PNF.RFC3966);
+            msg.phone.OriginalFormat = phoneUtil.formatInOriginalFormat(number, node.defaultCountryLetters);
+
+            //msg.geocoder = geocoder.getDescriptionForNumber(number, node.defaultCountryLetters);
+            //msg.carrier = carrierMapper.getNameForNumber(number, node.defaultCountryLetters);
+
             switch(numberType) {
                 case PhoneNumberType.FIXED_LINE:
                     msg.phone.NumberType = 'FIXED_LINE';
@@ -95,13 +109,7 @@ module.exports = function(RED) {
                     msg.phone.NumberType = 'UNKNOWN';
                     break;
             }
-
-            msg.phone.E164 = phoneUtil.format(number, PNF.E164);
-            msg.phone.INTERNATIONAL = phoneUtil.format(number, PNF.INTERNATIONAL);
-            msg.phone.NATIONAL = phoneUtil.format(number, PNF.NATIONAL);
-            msg.phone.RFC3966 = phoneUtil.format(number, PNF.RFC3966);
-            msg.phone.OriginalFormat = phoneUtil.formatInOriginalFormat(number, node.defaultCountryLetters);
-
+            
             //msg.phone.OutOfCountryCallingNumber = phoneUtil.formatOutOfCountryCallingNumber(number, node.outOfCountryLetters);
             //msg.phone.connectsToEmergencyNumber = shortInfo.connectsToEmergencyNumber(msg.payload, node.defaultCountryLetters);
             //msg.phone.isPossibleShortNumber = shortInfo.isPossibleShortNumber(phoneUtil.parse(msg.payload, node.defaultCountryLetters));
