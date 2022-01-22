@@ -1,6 +1,8 @@
-node_modules
-*.yml
-Dockerfile
-settings.js
-*.backup
-.npmignore
+# Ignore everything
+*
+# But these ...
+!package.json
+!phonenumber.*
+!README.md
+!LICENSE
+!example
