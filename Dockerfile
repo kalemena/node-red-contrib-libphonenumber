@@ -1,4 +1,4 @@
-FROM kalemena/node-red:latest
+FROM kalemena/node-red:2.1.1
 
 ADD [ "package.json", "phonenumber.*", "LICENSE", "example", "/opt/node-red-contrib-libphonenumber/" ]
 
