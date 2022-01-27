@@ -7,7 +7,7 @@
     "url": "https://github.com/kalemena/node-red-contrib-libphonenumber.git"
   },
   "dependencies": {
-    "google-libphonenumber": "^3.2.24"
+    "google-libphonenumber": "^3.2.26"
   },
   "keywords": [
     "node-red",
