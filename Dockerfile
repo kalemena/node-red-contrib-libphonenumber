@@ -1,10 +1,11 @@
-FROM kalemena/node-red:2.1.1
+FROM kalemena/node-red:latest
 
-ADD [ "package.json", "phonenumber.*", "LICENSE", "example", "/opt/node-red-contrib-libphonenumber/" ]
-
-USER root
-
-RUN npm i \
+COPY --chown=nodered:nodered [ "package*.json", "phonenumber.*", "LICENSE", "example", "/opt/node-red-contrib-libphonenumber/" ]
+RUN cd /opt/node-red-contrib-libphonenumber \
+  && rm package-lock.json \
+  && npm install \
+  && cd /opt/node-red \
+  && npm i \
         /opt/node-red-contrib-libphonenumber
 
-USER nodered
+# RUN npm i /opt/node-red-contrib-libphonenumber
