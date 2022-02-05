@@ -3,6 +3,6 @@
 # But these ...
 !package.json
 !phonenumber.*
-!README.md
+!readme.md
 !LICENSE
 !example
