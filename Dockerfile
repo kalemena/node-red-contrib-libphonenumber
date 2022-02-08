@@ -8,4 +8,4 @@ RUN cd /opt/node-red-contrib-libphonenumber \
   && npm i \
         /opt/node-red-contrib-libphonenumber
 
-# RUN npm i /opt/node-red-contrib-libphonenumber
+# RUN npm i node-red-contrib-libphonenumber
