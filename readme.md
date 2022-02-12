@@ -31,7 +31,6 @@
         </dt>
         <dd> Parsed number info with various details.</dd>            
     </dl>
-<p>See details and meaning of outputs at <a href="https://www.npmjs.com/package/google-libphonenumber">Google-LibPhoneNumber</a></p>
 
 # Installation
 
